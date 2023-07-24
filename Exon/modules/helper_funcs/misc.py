@@ -130,15 +130,15 @@ def paginate_modules(page_n: int, module_dict: Dict, prefix, chat=None) -> List:
         pairs = pairs[modulo_page * COLUMN_SIZE : COLUMN_SIZE * (modulo_page + 1)] + [
             (
                 EqInlineKeyboardButton(
-                    "☜",
+                    "⬅️",
                     callback_data="{}_prev({})".format(prefix, modulo_page),
                 ),
                 EqInlineKeyboardButton(
-                    "ɢᴏ ʜᴏᴍᴇ",
+                    "RETURN",
                     callback_data="start_back",
                 ),
                 EqInlineKeyboardButton(
-                    "☞",
+                    "➡️",
                     callback_data="{}_next({})".format(prefix, modulo_page),
                 ),
             )
