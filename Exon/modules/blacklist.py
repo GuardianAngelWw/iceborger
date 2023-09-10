@@ -339,14 +339,17 @@ def del_blacklist(update, context):
     message = update.effective_message
     user = update.effective_user
     bot = context.bot
+    
     to_match = extract_text(message)
     if not to_match:
         return
+    
     if is_approved(chat.id, user.id):
         return
+    
     getmode, value = sql.get_blacklist_setting(chat.id)
-
     chat_filters = sql.get_chat_blacklist(chat.id)
+    
     for trigger in chat_filters:
         pattern = r"( |^|[^\w])" + re.escape(trigger) + r"( |$|[^\w])"
         if re.search(pattern, to_match, flags=re.IGNORECASE):
@@ -360,65 +363,35 @@ def del_blacklist(update, context):
                         pass
                 elif getmode == 2:
                     message.delete()
-                    warn(
-                        update.effective_user,
-                        chat,
-                        ("Using blacklisted trigger: {}".format(trigger)),
-                        message,
-                        update.effective_user,
-                    )
+                    warn(update.effective_user, chat, ("Using blacklisted trigger: {}".format(trigger)), message, update.effective_user)
                     return
                 elif getmode == 3:
                     message.delete()
-                    bot.restrict_chat_member(
-                        chat.id,
-                        update.effective_user.id,
-                        permissions=ChatPermissions(can_send_messages=False),
-                    )
-                    bot.sendMessage(
-                        chat.id,
-                        f"Muted {user.first_name} for using Blacklisted word: {trigger}!",
-                    )
+                    bot.restrict_chat_member(chat.id, update.effective_user.id, permissions=ChatPermissions(can_send_messages=False))
+                    bot.sendMessage(chat.id, f"Muted {user.first_name} for using Blacklisted word: {trigger}!")
                     return
                 elif getmode == 4:
                     message.delete()
                     res = chat.unban_member(update.effective_user.id)
                     if res:
-                        bot.sendMessage(
-                            chat.id,
-                            f"Kicked {user.first_name} for using Blacklisted word: {trigger}!",
-                        )
+                        bot.sendMessage(chat.id, f"Kicked {user.first_name} for using Blacklisted word: {trigger}!")
                     return
                 elif getmode == 5:
                     message.delete()
                     chat.ban_member(user.id)
-                    bot.sendMessage(
-                        chat.id,
-                        f"Banned {user.first_name} for using Blacklisted word: {trigger}",
-                    )
+                    bot.sendMessage(chat.id, f"Banned {user.first_name} for using Blacklisted word: {trigger}")
                     return
                 elif getmode == 6:
                     message.delete()
                     bantime = extract_time(message, value)
                     chat.ban_member(user.id, until_date=bantime)
-                    bot.sendMessage(
-                        chat.id,
-                        f"Banned {user.first_name} until '{value}' for using Blacklisted word: {trigger}!",
-                    )
+                    bot.sendMessage(chat.id, f"Banned {user.first_name} until '{value}' for using Blacklisted word: {trigger}!")
                     return
                 elif getmode == 7:
                     message.delete()
                     mutetime = extract_time(message, value)
-                    bot.restrict_chat_member(
-                        chat.id,
-                        user.id,
-                        until_date=mutetime,
-                        permissions=ChatPermissions(can_send_messages=False),
-                    )
-                    bot.sendMessage(
-                        chat.id,
-                        f"Muted {user.first_name} until '{value}' for using Blacklisted word: {trigger}!",
-                    )
+                    bot.restrict_chat_member(chat.id, user.id, until_date=mutetime, permissions=ChatPermissions(can_send_messages=False))
+                    bot.sendMessage(chat.id, f"Muted {user.first_name} until '{value}' for using Blacklisted word: {trigger}!")
                     return
             except BadRequest as excp:
                 if excp.message != "Message to delete not found":
