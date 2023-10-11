@@ -71,8 +71,10 @@ __New couple of the day can be chosen at 12AM {tomorrow}__"""
 __New couple of the day can be chosen at 12AM {tomorrow}__"""
             await pbot.send_message(message.chat.id, text=couple_selection_message)
     except Exception as e:
+        mention = message.from_user.mention
+        error_message = f"{mention} is looking for a lover! I will ship him with me 👩‍❤️‍👨 (no lovers today)"
         print(e)
-        await message.reply_text(e)
+        await message.reply_text(error_message)
 
 
 __help__ = """
