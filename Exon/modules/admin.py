@@ -1008,7 +1008,14 @@ def refresh_admin(update, _):
 
   
 
-    update.effective_message.reply_text("• successfully refreshed admin cache !") 
+
+        send_message( 
+
+            update.effective_message, 
+
+            "✅ Bot restarted \n✅ Admin list updated", 
+
+        ) 
 
   
 
