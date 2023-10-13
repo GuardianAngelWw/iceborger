@@ -556,13 +556,11 @@ def info(update: Update, context: CallbackContext):
 
   
 
-    text = ( 
+    text = (
 
-        f"「 <b> Appraisal Results:</b> 」\n" 
+        f"🆔 ID: <code>{user.id}</code>\n" 
 
-        f"ID: <code>{user.id}</code>\n" 
-
-        f"FIRST NAME: {html.escape(user.first_name)}" 
+        f"👱 First Name: {html.escape(user.first_name)}" 
 
     ) 
 
@@ -570,23 +568,23 @@ def info(update: Update, context: CallbackContext):
 
     if user.last_name: 
 
-        text += f"\nLAST NAME: {html.escape(user.last_name)}" 
+        text += f"\n👱 Last Name: {html.escape(user.last_name)}" 
 
   
 
     if user.username: 
 
-        text += f"\nUSERNAME: @{html.escape(user.username)}" 
+        text += f"\n🌐 Username: @{html.escape(user.username)}" 
 
   
 
-    text += f"\nUSERLINK: {mention_html(user.id, 'link')}" 
+    text += f"\🖇️ Userlink: {mention_html(user.id, 'link')}" 
 
   
 
     if chat.type != "private" and user_id != bot.id: 
 
-        _stext = "\n<b>Presence:</b> <code>{}</code>" 
+        _stext = "\n<b>👀 Situation:</b> <code>{}</code>" 
 
   
 
@@ -618,7 +616,7 @@ def info(update: Update, context: CallbackContext):
 
         userhp = hpmanager(user) 
 
-        text += f"\n\n<b>HEALTH:</b> <code>{userhp['earnedhp']}/{userhp['totalhp']}</code>\n[<i>{make_bar(int(userhp['percentage']))} </i>{userhp['percentage']}%]" 
+       # text += f"\n\n<b>HEALTH:</b> <code>{userhp['earnedhp']}/{userhp['totalhp']}</code>\n[<i>{make_bar(int(userhp['percentage']))} </i>{userhp['percentage']}%]" 
 
   
 
@@ -630,9 +628,9 @@ def info(update: Update, context: CallbackContext):
 
             text += "\n\n<b>This person is spamwatched!</b>" 
 
-            text += f"\nREASON: <pre>{spamwtc.reason}</pre>" 
+            text += f"\Reason: <pre>{spamwtc.reason}</pre>" 
 
-            text += "\nAPPEAL AT @SpamWatchSupport" 
+            text += "\Appeal AT @SpamWatchSupport" 
 
     except: 
 
@@ -689,14 +687,7 @@ def info(update: Update, context: CallbackContext):
   
 
     if disaster_level_present: 
-
-        text += ' [<a href="https://t.me/">Levelling</a>]'.format( 
-
-            bot.username, 
-
-        ) 
-
-  
+      return;
 
     try: 
 
@@ -716,7 +707,7 @@ def info(update: Update, context: CallbackContext):
 
                 custom_title = result["custom_title"] 
 
-                text += f"\n\nTITLE:\n<b>{custom_title}</b>" 
+                text += f"\n\👑 Title:\n<b>{custom_title}</b>" 
 
     except BadRequest: 
 
