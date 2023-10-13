@@ -342,9 +342,9 @@ def get_id(update: Update, context: CallbackContext):
 
             msg.reply_text( 
 
-                f"x <b>Sender:</b> {mention_html(user2.id, user2.first_name)} - <code>{user2.id}</code>.\n" 
+                f"<b>Sender:</b> {mention_html(user2.id, user2.first_name)} - <code>{user2.id}</code>.\n" 
 
-                f"x <b>Forwarder:</b> {mention_html(user1.id, user1.first_name)} - <code>{user1.id}</code>.", 
+                f"<b>Forwarder:</b> {mention_html(user1.id, user1.first_name)} - <code>{user1.id}</code>.", 
 
                 parse_mode=ParseMode.HTML, 
 
@@ -358,7 +358,7 @@ def get_id(update: Update, context: CallbackContext):
 
             msg.reply_text( 
 
-                f"<b>REPLIED To:</b> {mention_html(user.id, user.first_name)}\nx <b>ID of the user:</b> <code>{user.id}</code>", 
+                f"<b>Replied to:</b> {mention_html(user.id, user.first_name)}\nx <b>ID of the user:</b> <code>{user.id}</code>", 
 
                 parse_mode=ParseMode.HTML, 
 
@@ -372,7 +372,7 @@ def get_id(update: Update, context: CallbackContext):
 
             msg.reply_text( 
 
-                f"Your id is <code>{chat.id}</code>.", parse_mode=ParseMode.HTML 
+                f"🆔 ID: <code>{chat.id}</code>.", parse_mode=ParseMode.HTML 
 
             ) 
 
@@ -382,7 +382,7 @@ def get_id(update: Update, context: CallbackContext):
 
             msg.reply_text( 
 
-                f"<b>User:</b> {mention_html(msg.from_user.id, msg.from_user.first_name)}\n<b>From User ID:</b> <code>{update.effective_message.from_user.id}</code>\n<b>This group ID:</b> <code>{chat.id}</code>", 
+                f"<b>👱 Name:</b> {mention_html(msg.from_user.id, msg.from_user.first_name)}\n<b>🆔 ID:</b> <code>{update.effective_message.from_user.id}</code>\n<b>🗨️ Group ID:</b> <code>{chat.id}</code>", 
 
                 parse_mode=ParseMode.HTML, 
 
