@@ -552,7 +552,7 @@ def info(update: Update, context: CallbackContext):
 
   
 
-    rep = message.reply_text("<code>APPRAISING...</code>", parse_mode=ParseMode.HTML) 
+    rep = bot.send_message("<code>APPRAISING...</code>", parse_mode=ParseMode.HTML) 
 
   
 
@@ -578,7 +578,7 @@ def info(update: Update, context: CallbackContext):
 
   
 
-    text += f"\🖇️ Userlink: {mention_html(user.id, 'link')}" 
+    text += f"\n🖇️ Userlink: {mention_html(user.id, 'link')}" 
 
   
 
