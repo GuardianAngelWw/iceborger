@@ -144,7 +144,7 @@ def log_user(update: Update, context: CallbackContext):
 @Exoncmd(command="groups")
 @sudo_plus
 def chats(update: Update, context: CallbackContext):
-    all_chats = user_db.get_all_chats() or []
+    all_chats = sql.get_all_chats() or []
     chatfile = "List of chats.\n0. Chat name | Chat ID | Members count\n"
     P = 1
     for chat in all_chats:
@@ -153,12 +153,9 @@ def chats(update: Update, context: CallbackContext):
             curr_chat.get_member(context.bot.id)
             chat_members = curr_chat.get_member_count(context.bot.id)
             chatfile += "{}. {} | {} | {}\n".format(
-                P,
-                chat.chat_name,
-                chat.chat_id,
-                chat_members,
+                P, chat.chat_name, chat.chat_id, chat_members
             )
-            P += 1
+            P = P + 1
         except:
             pass
 
@@ -167,7 +164,7 @@ def chats(update: Update, context: CallbackContext):
         update.effective_message.reply_document(
             document=output,
             filename="groups_list.txt",
-            caption="List of Groups in the DATABASE.",
+            caption="Here be the list of groups in my database.",
         )
 
 
