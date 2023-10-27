@@ -30,6 +30,7 @@ SOFTWARE.
 from io import BytesIO
 from time import sleep
 
+import Exon.modules.sql.users_sql as sql
 from telegram import ParseMode, TelegramError, Update
 from telegram.error import BadRequest, Unauthorized
 from telegram.ext import CallbackContext, Filters
