@@ -8,6 +8,6 @@ RUN pip3 install --upgrade pip setuptools
 
 RUN pip install -U -r requirements.txt
 
-EXPOSE 3030
+EXPOSE 80
 
 CMD ["bash", "start"]
