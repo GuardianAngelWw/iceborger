@@ -151,7 +151,7 @@ from Exon.modules.sql import SESSION
 telegraph = Telegraph()
 telegraph.create_account(short_name="Exon")
 
-defaults = tg.Defaults(run_async=True)
+#defaults = tg.Defaults(run_async=True)
 
 updater = tg.Updater(
     token=TOKEN,
