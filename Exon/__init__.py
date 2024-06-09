@@ -154,7 +154,7 @@ telegraph.create_account(short_name="Exon")
 #defaults = tg.Defaults(run_async=True)
 
 updater = tg.Updater(
-    token=TOKEN,
+  #  token=TOKEN,
     base_url=BOT_API_URL,
     workers=min(32, os.cpu_count() + 4),
     request_kwargs={"read_timeout": 10, "connect_timeout": 10},
